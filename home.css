@@ -1,0 +1,34 @@
+.searchbtn{
+    height: 40px;
+    width : 80px;
+    border-radius: 10px;
+}
+.nav-link:hover {
+    color: rgb(201, 74, 112) !important;
+}
+
+/* Card Styles */
+.card-body {
+    position: relative;
+}
+
+.btn {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease, visibility 0.3s ease; 
+}
+
+.card:hover .btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* .btnn{
+    height: 100px;
+    width: 200px;
+} */
+

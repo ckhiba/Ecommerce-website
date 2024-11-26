@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product View</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .searchbtn {
+            height: 40px;
+            width: 80px;
+            border-radius: 10px;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 350px;
+            border-radius: 10px;
+        }
+        .btn-add-to-bag, .btn-add-to-wishlist {
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-add-to-bag {
+            background-color: #CC4359;
+            color: white;
+            border: none;
+        }
+        .btn-add-to-bag:hover {
+            background-color: #b03a51;
+            cursor: pointer;
+        }
+        .btn-add-to-wishlist {
+            background-color: transparent;
+            color: #CC4359;
+            border: 2px solid #CC4359;
+        }
+        .btn-add-to-wishlist:hover {
+            background-color: #CC4359;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- First Navbar (Black background) -->
+<nav class="navbar" style="background-color: black; height: 35px; padding: 5px; position: sticky; top: 0; z-index: 1000;">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <!-- Left side: Sign In/Register -->
+        <a class="navbar-brand d-flex align-items-center" href="#" style="text-decoration: none;">
+            <i class="fa fa-user" aria-hidden="true" style="color: white; font-size: 14px; margin-right: 5px;"></i>
+            <span style="color: white; font-size: 14px;">Sign In/Register</span>
+        </a>
+
+        <!-- Right side: Wishlist and Cart (Aligned Right) -->
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand d-flex align-items-center" href="#" style="text-decoration: none;">
+                <i class="fa fa-heart" aria-hidden="true" style="color: white; font-size: 14px; margin-right: 5px;"></i>
+                <span style="color: white; font-size: 14px;">Wishlist</span>
+            </a>
+            <a class="navbar-brand d-flex align-items-center" href="cart.html" style="text-decoration: none;">
+                <i class="fa fa-shopping-basket" aria-hidden="true" style="color: white; font-size: 14px; margin-left: 15px; margin-right: 5px;"></i>
+                <span style="color: white; font-size: 14px;">Cart</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Second Navbar (White background) -->
+<nav class="navbar" style="background-color: white;">
+<div class="container-fluid d-flex justify-content-between">
+    <a href="home.html">
+    <img src="images/Sephora-Logo.png" alt="logo" height="120px" width="200px" style="margin-left: 50px;"></a>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search brand and products" aria-label="Search" style="width: 350px;">
+        <button class="searchbtn" type="submit" style="background-color: black; color: white; border-color: black;">Search</button>
+    </form>
+</div>
+<nav class="navbar navbar-expand-lg" style="background-color: white; margin: auto; position: sticky; top: 0; z-index: 1000;">
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <!-- <a class="nav-link active" aria-current="page" href="#">NEW</a> -->
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">NEW</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">BRANDS</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">MAKEUP</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">SKINCARE</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">HAIR</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">FRAGRANCE</a>
+                <a class="nav-link" href="#" style="color: black; transition: color 0.3s;">SALE</a>
+            </div>
+        </div>
+    </div>
+</nav>
+</nav>
+
+<!-- Product Details Container -->
+<div class="container mt-5" id="product_view"></div>
+
+<script>
+    let products = {
+        1: {
+            id: 1,
+            name: "Flushed Cream Blush",
+            description: "Creamy Blush.",
+            price: 1800,
+            originalPrice: 2200,
+            discount: "20% Off",
+            image: "images/s2404564-main-zoom.webp"
+        },
+        2: {
+            id: 2,
+            name: "Care Better Rouge Lipstick",
+            description: "Tinted Butter Balm",
+            price: 1100,
+            originalPrice: 1300,
+            discount: "10% Off",
+            image: "images/550188_swatch.avif"
+        },
+        3: {
+            id: 3,
+            name: "Cream Lip Stain",
+            description: "Soft Matte Lip Cream.",
+            price: 2850,
+            originalPrice: 3000,
+            discount: "25% Off",
+            image: "images/61caCJyDNcL._SL1500_.jpg"
+        },
+        4: {
+            id: 4,
+            name: "Colorful Face Powder Blush",
+            description: "Matte Blush",
+            price: 3150,
+            originalPrice: 3800,
+            discount: "20% Off",
+            image: "images/29a3be459856ce7ec7d26043b82a1a6c.jpeg"
+        }
+    };
+
+    function getProductID() {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('id');
+    }
+
+    let quantity = 1;
+    function increment() {
+        quantity++;
+        document.getElementById("quantity").innerText = quantity;
+    }
+
+    function decrement() {
+        if (quantity > 1) {
+            quantity--;
+            document.getElementById("quantity").innerText = quantity;
+        }
+    }
+
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity += quantity;
+        } else {
+            cart.push({ ...product, quantity });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        window.location.href = "cart.html";
+    }
+
+    function handleAddToCart(productId) {
+        const product = products[productId];
+        if (product) {
+            addToCart(product);
+        }
+    }
+
+    function ProductDetails(product) {
+        let productDetails = document.getElementById('product_view');
+        productDetails.innerHTML = `
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                </div>
+                <div class="col-md-6">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <h4 style="color: #CC4359;">₹${product.price}</h4>
+                    <p><del>₹${product.originalPrice}</del> <span style="color: green;">${product.discount}</span></p>
+                    <div>
+                        <button class="btn-qn" onclick="decrement()" style="background-color: grey; border-radius: 6px; border: none; color: white;">-</button>
+                        <span id="quantity" class="mx-2">${quantity}</span>
+                        <button class="btn-qn" onclick="increment()" style="background-color: grey; border-radius: 6px; border: none; color: white;">+</button>
+                    </div>
+                    <button class="btn btn-add-to-bag mt-3" onclick="handleAddToCart(${product.id})">Add to Bag</button>
+                    <button class="btn btn-add-to-wishlist mt-3">Add to Wishlist</button>
+                </div>
+            </div>
+        `;
+    }
+
+    let productId = getProductID();
+    let product = products[productId];
+
+    if (product) {
+        ProductDetails(product);
+    } else {
+        document.getElementById('product_view').innerHTML = "<p>Product not found.</p>";
+    }
+</script>
+
+</body>
+</html>
